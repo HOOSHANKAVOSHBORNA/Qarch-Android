@@ -38,7 +38,9 @@ class MyApp extends StatelessWidget {
 
 
 //git init
-// git remote add origin https://github.com/xxx/yyy.git
+// git remote add origin https://github.com/HOOSHANKAVOSHBORNA/Qarch-Android.git
 // git add .
 // git commit -m "first commit"
 // git push -u origin master
+
+//token: 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
