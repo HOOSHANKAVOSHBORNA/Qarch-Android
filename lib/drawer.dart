@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:androidmap/home.dart';
+import 'package:flutter_map/flutter_map.dart';
 
 Widget _buildMenuItem(
   BuildContext context,
@@ -64,85 +65,130 @@ Drawer buildDrawer(BuildContext context, String currentRoute) {
           icon: const Icon(Icons.home),
         ),
         const Divider(),
-        _buildMenuItem(
-          context,
-          MaterialButton(
-            padding: const EdgeInsets.only(right: 150),
-            onPressed: () {
-              // _animatedMapMove(Tehran, 10);
-              // _displayTextInputDialog(context);
-              Navigator.pop(context);
-            },
-            child: const Text('Add Layer'),
+        SafeArea(
+          child: Column(
+            children: [
+              ExpansionTile(
+                title: const Text("Map Layers"),
+                leading: const Icon(Icons.draw), //add icon
+                childrenPadding:
+                    const EdgeInsets.only(left: 60), //children padding
+                children: [
+                  ListTile(
+                    title: const Text("Show all"),
+                    onTap: () {
+                      showAirplaneMarkers = true;
+                      showShipMarkers = true;
+                      showAircraftMarkers = true;
+                      showMissileMarkers = true;
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Hide all"),
+                    onTap: () {
+                      showAirplaneMarkers = false;
+                      showShipMarkers = false;
+                      showAircraftMarkers = false;
+                      showMissileMarkers = false;
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Airplane Layer"),
+                    onTap: () {
+                      showAirplaneMarkers = !showAirplaneMarkers;
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Ship Layer"),
+                    onTap: () {
+                      showShipMarkers = !showShipMarkers;
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Aircraft Layer"),
+                    onTap: () {
+                      showAircraftMarkers = !showAircraftMarkers;
+                      Navigator.pop(context);
+                    },
+                  ),
+                  ListTile(
+                    title: const Text("Missile Layer"),
+                    onTap: () {
+                      showMissileMarkers = !showMissileMarkers;
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+            ],
           ),
-          MapControllerPage.route,
-          currentRoute,
-          icon: const Icon(Icons.layers),
         ),
+
         const Divider(),
         SafeArea(
-            child:Column(
+            child: Column(
+          children: [
+            ExpansionTile(
+              title: const Text("Draw Layers"),
+              leading: const Icon(Icons.draw), //add icon
+              childrenPadding:
+                  const EdgeInsets.only(left: 60), //children padding
               children: [
-                ExpansionTile(
-                  title: const Text("Draw"),
-                  leading: const Icon(Icons.draw), //add icon
-                  childrenPadding: const EdgeInsets.only(left:60), //children padding
-                  children: [
-                    ListTile(
-                      title: const Text("Polygon"),
-                      onTap: (){
-                        canAddPolygonPoints = !canAddPolygonPoints;
-                        Navigator.pop(context);
-                      },
-                    ),
-
-                    ListTile(
-                      title: const Text("Polyline"),
-                      onTap: (){
-                        canAddPolylinePoints = !canAddPolylinePoints;
-                        Navigator.pop(context);
-                      },
-                    ),
-                    ListTile(
-                      title: const Text("Circle"),
-                      onTap: (){
-                        canAddCirclePoints = !canAddCirclePoints;
-                        Navigator.pop(context);
-                      },
-                    ),
-
-                    //more child menu
-                  ],
+                ListTile(
+                  title: const Text("Polygon"),
+                  onTap: () {
+                    canAddPolygonPoints = !canAddPolygonPoints;
+                    Navigator.pop(context);
+                  },
                 ),
 
+                ListTile(
+                  title: const Text("Polyline"),
+                  onTap: () {
+                    canAddPolylinePoints = !canAddPolylinePoints;
+                    Navigator.pop(context);
+                  },
+                ),
+                ListTile(
+                  title: const Text("Circle"),
+                  onTap: () {
+                    canAddCirclePoints = !canAddCirclePoints;
+                    Navigator.pop(context);
+                  },
+                ),
 
-                // ExpansionTile(
-                //   title: Text("Parent Category 2"),
-                //   leading: Icon(Icons.person), //add icon
-                //   childrenPadding: EdgeInsets.only(left:60), //children padding
-                //   children: [
-                //     ListTile(
-                //       title: Text("Child Category 1"),
-                //       onTap: (){
-                //         //action on press
-                //       },
-                //     ),
-                //
-                //     ListTile(
-                //       title: Text("Child Category 2"),
-                //       onTap: (){
-                //         //action on press
-                //       },
-                //     ),
-                //
-                //     //more child menu
-                //   ],
-                // )
+                //more child menu
               ],
-            )
-        ),
+            ),
 
-
+            // ExpansionTile(
+            //   title: Text("Parent Category 2"),
+            //   leading: Icon(Icons.person), //add icon
+            //   childrenPadding: EdgeInsets.only(left:60), //children padding
+            //   children: [
+            //     ListTile(
+            //       title: Text("Child Category 1"),
+            //       onTap: (){
+            //         //action on press
+            //       },
+            //     ),
+            //
+            //     ListTile(
+            //       title: Text("Child Category 2"),
+            //       onTap: (){
+            //         //action on press
+            //       },
+            //     ),
+            //
+            //     //more child menu
+            //   ],
+            // )
+          ],
+        )),
 
         // const Divider(),
         // _buildMenuItem(
@@ -189,4 +235,3 @@ Drawer buildDrawer(BuildContext context, String currentRoute) {
     ),
   );
 }
-

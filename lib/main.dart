@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (context) => SplashPage(),
         // '/': (context) => SplashFuturePage(),
-        '/home': (context) => MapControllerPage(),
+        '/home': (context) => const MapControllerPage(),
       },
       // home: const MapControllerPage(),
       // routes: <String, WidgetBuilder>{
